@@ -1,3 +1,5 @@
+export const BASE_URL = "https://be-1013759214686.us-central1.run.app";
+
 document.addEventListener("DOMContentLoaded", () => {
   fetchNotes();
 
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchNotes() {
-  fetch("http://localhost:3000/notes")
+  fetch(`${BASE_URL}/`)
     .then((response) => response.json())
     .then((notes) => {
       const notesContainer = document.getElementById("notes");
@@ -43,7 +45,7 @@ function addNote() {
     return;
   }
 
-  fetch("http://localhost:3000/add-notes", {
+  fetch(`${BASE_URL}/add-notes`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title, category, content }),
@@ -78,7 +80,7 @@ function updateNote() {
     return;
   }
 
-  fetch(`http://localhost:3000/update-notes/${id}`, {
+  fetch(`${BASE_URL}/update-notes/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title, category, content }),
@@ -110,7 +112,7 @@ function deleteNote() {
     return;
   }
 
-  fetch(`http://localhost:3000/delete-notes/${id}`, {
+  fetch(`${BASE_URL}/delete-notes/${id}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -127,9 +129,7 @@ function deleteNote() {
     });
 }
 
-// Fungsi untuk mengosongkan form
 function clearForm() {
-  // Mengosongkan semua input form
   document.getElementById("title").value = "";
   document.getElementById("category").value = "";
   document.getElementById("content").value = "";
